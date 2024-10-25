@@ -3,12 +3,14 @@ import * as React from 'react';
 export interface IHomeProps {
 }
 
-export default class Home extends React.Component<IHomeProps> {
-  public render() {
+
+const Home: React.FunctionComponent<IHomeProps> = () => {
     return (
-      <div>
-        HOme
-      </div>
+        <div>
+            HOme
+        </div>
     );
-  }
+  
 }
+
+export default Home
