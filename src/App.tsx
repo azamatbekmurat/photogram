@@ -1,16 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import * as React from 'react';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes';
+import { UserAuthProvider } from "./context/userAuthContext";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div className='App'></div>
-    </>
-  )
+interface IAppProps {
 }
 
-export default App
+const App: React.FunctionComponent<IAppProps> = () => {
+  return (
+    <UserAuthProvider>
+      <RouterProvider router={router} />
+    </UserAuthProvider>
+  );
+};
+
+export default App;
