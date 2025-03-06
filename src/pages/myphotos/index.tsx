@@ -1,3 +1,4 @@
+import Layout from '@/components/layout';
 import * as React from 'react';
 
 export interface IMyPhotosProps {
@@ -6,9 +7,11 @@ export interface IMyPhotosProps {
 
 const MyPhotos: React.FunctionComponent<IMyPhotosProps> = () => {
     return (
-        <div>
-            MyPhotos
-        </div>
+        <Layout>
+            <div>
+                My Photos
+            </div>
+        </Layout>
     );
   
 }

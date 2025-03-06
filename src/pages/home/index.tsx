@@ -1,3 +1,4 @@
+import Layout from '@/components/layout';
 import * as React from 'react';
 
 export interface IHomeProps {
@@ -6,9 +7,12 @@ export interface IHomeProps {
 
 const Home: React.FunctionComponent<IHomeProps> = () => {
     return (
-        <div>
-            HOme
-        </div>
+        <Layout>
+            <div>
+                Home
+            </div>
+        </Layout>
+        
     );
   
 }
