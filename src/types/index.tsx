@@ -44,3 +44,17 @@ export interface ProfileInfo {
   displayName?: string;
   photoURL?: string;
 }
+
+export interface UserProfile {
+  userId?: string;
+  displayName?: string;
+  photoURL?: string;
+  userBio?: string;
+}
+
+export interface ProfileResponse {
+  userId?: string;
+  displayName?: string;
+  photoURL?: string;
+  userBio?: string;
+}
