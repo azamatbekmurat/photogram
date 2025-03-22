@@ -1,6 +1,11 @@
 import Layout from '@/components/layout';
+import PostCard from '@/components/postCard';
+import Stories from '@/components/stories';
 import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
+import { useUserAuth } from '@/context/userAuthContext';
+import { getPosts } from '@/repository/post.service';
+import { DocumentResponse } from '@/types';
+import { HeartIcon, Search } from 'lucide-react';
 import * as React from 'react';
 
 export interface IHomeProps {
@@ -8,6 +13,26 @@ export interface IHomeProps {
 
 
 const Home: React.FunctionComponent<IHomeProps> = () => {
+    const { user } = useUserAuth();
+    const [data, setData] = React.useState<DocumentResponse[]>([]);
+    const getAllPost = async () => {
+        const response: DocumentResponse[] = (await getPosts()) || [];
+        setData(response);
+    };
+
+    React.useEffect(() => {
+        if(user !== null) {
+            getAllPost();
+        }
+    }, []);
+
+    const renderPosts = () => {
+        return data.map((item) => {
+            return <PostCard data={item} key={item.id}/>
+            
+        });
+    };
+    
     return (
         <Layout>
             <div className='flex flex-col'>
@@ -25,6 +50,15 @@ const Home: React.FunctionComponent<IHomeProps> = () => {
 
                 <div className='mb-5 overflow-y-auto'>
                     <h2 className='mb-5'>Stories</h2>
+                    <Stories />
+                </div>
+                <div className='mb-5'>
+                    <h2 className='mb-5'>Feed</h2>
+                    <div className='w-full flex justify-center'>
+                        <div className='flex flex-col max-w-sm rounded-sm overflow-hidden'>
+                            {data ? renderPosts() : <div>...Loading</div>}
+                        </div>
+                    </div>
                 </div>
             </div>
         </Layout>
