@@ -6,12 +6,16 @@ import avatar from "@/assets/images/image1.jpg"
 import { Edit2Icon, HeartIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getPostByUserId, getPosts } from '@/repository/post.service';
+import { useNavigate } from 'react-router-dom';
+import { getUserProfile } from '@/repository/user.service';
 
 interface IProfileProps {
 }
 
 const Profile: React.FunctionComponent<IProfileProps> = () => {
   const { user } = useUserAuth();
+  const navigate = useNavigate();
+  
   const initialUserInfo: ProfileResponse = {
     id: "",
     userId: user?.uid,
@@ -46,12 +50,6 @@ const Profile: React.FunctionComponent<IProfileProps> = () => {
     }
   };
 
-  React.useEffect(() => {
-  if (user != null) {
-    getAllPost(user.uid);
-  }
-  }, []);
-
   const renderPosts = () => {
     return data.map((item) => {
         return (
@@ -72,8 +70,23 @@ const Profile: React.FunctionComponent<IProfileProps> = () => {
     });
   };
 
-  const editProfile = () => {
+  const getUserProfileInfo = async (userId: string) => {
+    const data: ProfileResponse = (await getUserProfile(userId)) || {};
 
+    if(data.displayName) {
+      setUserInfo(data)
+    }
+  }
+
+  React.useEffect(() => {
+    if (user != null) {
+      getAllPost(user.uid);
+      getUserProfileInfo(user.uid)
+    }
+    }, []);
+
+  const editProfile = () => {
+    navigate("/edit-profile", {state: userInfo})
   }
 
   return (
@@ -89,7 +102,7 @@ const Profile: React.FunctionComponent<IProfileProps> = () => {
                   <img src={userInfo.photoURL ? userInfo.photoURL : avatar} alt="avatar" className='w-28 h-28 rounded-full border-2 border-slate-800 object-cover' />
                 </div>
                 <div className='text-xl ml-3'>
-                  {userInfo.displayName}
+                  {userInfo.displayName ? userInfo.displayName : "Guest user"}
                 </div>
                 <div className='text-xl ml-3'>
                   {user?.email ? user?.email : ""}
