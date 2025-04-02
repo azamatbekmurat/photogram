@@ -21,6 +21,8 @@ export interface Post {
   likes: number;
   userlikes: [];
   userId?: string;
+  username?: string;
+  photoURL?: string;
   date: Date;
 }
 
@@ -35,6 +37,8 @@ export interface DocumentResponse {
   photos?: PhotoMeta[];
   likes?: number;
   userlikes?: [];
+  username?: string;
+  photoURL?: string;
   userId?: string;
   date?: Date;
 }
@@ -53,7 +57,7 @@ export interface UserProfile {
 }
 
 export interface ProfileResponse {
-  id: string;
+  id?: string;
   userId?: string;
   displayName?: string;
   photoURL?: string;
