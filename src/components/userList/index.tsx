@@ -9,7 +9,7 @@ import { Button } from '../ui/button';
 interface IUserListProps {
 }
 
-const UserList: React.FunctionComponent<IUserListProps> = (props) => {
+const UserList: React.FunctionComponent<IUserListProps> = () => {
   const {user} = useUserAuth();
 
   const [suggestedUser, setSuggestedUser] = React.useState<ProfileResponse[]>([]);
