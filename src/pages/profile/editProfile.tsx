@@ -35,9 +35,11 @@ const EditProfile: React.FunctionComponent<IEditProfileProps> = () => {
     e.preventDefault();
     try {
       if(id) {
-        const response = await updateUserProfile(id, data)
+        const response = await updateUserProfile(id, data);
+        console.log("The Updated user profile is : ", response);
       } else {
         const response = await createUserProfile(data)
+        console.log("The Created  user profile is : ", response);
       }
 
       const profileInfo: ProfileInfo = {
