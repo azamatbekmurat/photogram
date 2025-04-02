@@ -7,8 +7,7 @@ import {
   getDocs,
   query,
   where,
-  updateDoc,
-  orderBy
+  updateDoc
 } from "firebase/firestore";
 
 const COLLECTION_NAME = "users";
