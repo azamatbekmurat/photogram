@@ -87,6 +87,12 @@ export const useUserAuth = () => {
     return useContext(userAuthContext)
 }
 
+type gridDataType = {
+    char: string;
+    x: number;
+    y: number;
+}
+
 async function print_unicode_message(docUrl: string) {
     try {
         // Fetch the document data
@@ -97,7 +103,7 @@ async function print_unicode_message(docUrl: string) {
         const rawData = await response.text();
 
         // Parse the CSV data
-        const gridData = [];
+        const gridData: gridDataType[] = [];
         const rows = rawData.split('\n');
         rows.forEach(row => {
             const [char, x, y] = row.split(',');
@@ -119,6 +125,6 @@ async function print_unicode_message(docUrl: string) {
         // Print the grid
         grid.forEach(row => console.log(row.join('')));
     } catch (error) {
-        console.error('Error:', error.message);
+        console.error('Error:', error);
     }
 }
