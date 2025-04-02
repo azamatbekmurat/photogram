@@ -5,7 +5,7 @@ import * as React from 'react';
 import avatar from "@/assets/images/image1.jpg"
 import { Edit2Icon, HeartIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { getPostByUserId, getPosts } from '@/repository/post.service';
+import { getPostByUserId } from '@/repository/post.service';
 import { useNavigate } from 'react-router-dom';
 import { getUserProfile } from '@/repository/user.service';
 
