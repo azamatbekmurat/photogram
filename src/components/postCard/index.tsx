@@ -3,7 +3,6 @@ import { DocumentResponse } from '@/types';
 import { HeartIcon, MessageCircle } from 'lucide-react';
 import * as React from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
-import image2 from "@/assets/images/image2.jpg"
 import { cn } from '@/lib/utils';
 import { updateLikesOnPost } from '@/repository/post.service';
 
@@ -18,7 +17,7 @@ const PostCard: React.FunctionComponent<IPostCardProps> = ({ data }) => {
         isLike: boolean;
     }>({
         likes: data.likes!,
-        isLike: data.userlikes!.includes(user?.uid) ? true : false
+        isLike: data.userlikes?.includes(user!.uid) ? true : false
     })
 
     const updateLike = async (isVal: boolean) => {
