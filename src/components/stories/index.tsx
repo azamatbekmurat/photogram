@@ -9,7 +9,7 @@ import image7 from "@/assets/images/image6.jpg"
 interface IStoriesProps {
 }
 
-const Stories: React.FunctionComponent<IStoriesProps> = (props) => {
+const Stories: React.FunctionComponent<IStoriesProps> = () => {
   return <div className='flex justify-between'>
     <img
       src={image2}
